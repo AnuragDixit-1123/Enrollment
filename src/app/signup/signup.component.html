@@ -1,0 +1,21 @@
+
+<form class="example-container" [formGroup]='newGroup' (ngSubmit)='onClick()'>
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName="firstName" >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName="lastName" >
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Enter your email" formControlName="email" >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="password" type='password'formControlName="password" >
+  </mat-form-field> 
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" type='password'formControlName="confirmPassword" >
+  </mat-form-field>
+  <button mat-raised-button color="primary">
+    Signup
+  </button>
+</form>
