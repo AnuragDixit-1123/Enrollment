@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
+import { ModalComponent } from '../modal/modal.component';
+import { HomePageService } from './home-page.service';
 
 
 export interface DialogData {
@@ -26,47 +27,51 @@ export class HomePageComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(private homeService: HomePageService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
 
   onDelete() {
-    console.log('delete pressed')
+    console.log('delete pressed');
   }
 
   onEdit(data) {
-    console.log('edit pressed', data)
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
+    console.log('edit pressed', data);
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '50vw',
+      height: '50vh',
       data
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      
     });
   }
-}
 
-
-
-@Component({
-  selector: 'app-modal',
-  templateUrl: '../modal/modal.component.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
+  fetch() {
+    this.homeService.fetchData()
   }
-
 }
+
+
+
+// @Component({
+//   selector: 'app-modal',
+//   templateUrl: '../modal/modal.component.html',
+// })
+// export class DialogOverviewExampleDialog {
+
+//   constructor(
+//     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+//     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+
+// }
 
 
 

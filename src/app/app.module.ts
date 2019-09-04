@@ -11,7 +11,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
-import { DialogOverviewExampleDialog } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -22,7 +21,6 @@ import { DialogOverviewExampleDialog } from './home-page/home-page.component';
     HomePageComponent,
     LoaderComponent,
     ModalComponent,
-    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -34,7 +32,7 @@ import { DialogOverviewExampleDialog } from './home-page/home-page.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog]
+  entryComponents: [ModalComponent]
 
 })
 export class AppModule { }

@@ -1,24 +1,28 @@
-<div mat-dialog-content>
+<div mat-dialog-content class='mainClass'>
   
         <mat-form-field>
           <input matInput placeholder='ID' [(ngModel)]="data.id">
         </mat-form-field>
-          <mat-form-field>
+        <br>
+        <mat-form-field>
           <input matInput placeholder='Name' [(ngModel)]="data.name">
         </mat-form-field>
-          <mat-form-field>
+        <br>
+        <mat-form-field>
           <input matInput placeholder='Age' [(ngModel)]="data.age">
         </mat-form-field>
-          <mat-form-field>
+        <br>
+        <mat-form-field>
           <input matInput placeholder='Sex' [(ngModel)]="data.sex">
         </mat-form-field>
-          <mat-form-field>
+        <br>
+        <mat-form-field>
           <input matInput placeholder='Percentage' [(ngModel)]="data.percentage">
         </mat-form-field>
       </div>
       <div mat-dialog-actions>
-        <button mat-button (click)="onNoClick()">Cancel</button>
-        <button mat-button [mat-dialog-close]="data" >Add</button>
+        <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="data" >Add</button>
       </div>
       
       
