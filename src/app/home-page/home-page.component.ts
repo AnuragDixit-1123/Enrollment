@@ -1,18 +1,10 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { HomePageService } from './home-page.service';
-
-
-export interface DialogData {
-  name: string;
-  age: number;
-  sex: string;
-  percentage: string;
-  id: number;
-}
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -22,8 +14,10 @@ export interface DialogData {
 })
 export class HomePageComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'age', 'sex', 'percentage', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  studentData: any[] = [];
+  displayedColumns: string[] = ['identity', 'name', 'age', 'sex', 'percentage', 'edit', 'delete'];
+  dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
+  error = new Subject<string>();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -31,68 +25,101 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    this.fetchData();
   }
 
-  onDelete() {
-    console.log('delete pressed');
+  updateStudentData(id) {
+    const index = this.studentData.findIndex( (element) => {
+      return element.id === id;
+    });
+    this.studentData.splice(index, 1);
+    this.updateDataSource();
   }
 
-  onEdit(data) {
-    console.log('edit pressed', data);
+  onDelete(data) {
+    this.homeService.deleteData(data.id)
+     .subscribe(
+      response => {
+          console.log('response is', response);
+          this.updateStudentData(data.id);
+      },
+      error => {
+          this.error.next(error.message);
+          console.log(error, ' error found ', error);
+      }
+    );
+  }
+
+  openModel(data) {
+    let studentData = data;
+
+    if (!data) {
+       studentData = {
+        age: null,
+        enrollmentId: null,
+        id: '',
+        name: '',
+        percentage: '',
+        sex: ''
+       };
+     }
+
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '50vw',
       height: '50vh',
-      data
+      data: studentData
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+       console.log(result);
+       if (result ) {
+        this.setData(result);
+       }
     });
   }
 
-  fetch() {
+  fetchData() {
     this.homeService.fetchData()
+      .subscribe(
+        response => {
+            this.studentData = response;
+            this.updateDataSource();
+        },
+        error => {
+            this.error.next(error.message);
+            console.log(error, ' error found ', error);
+        }
+      );
+  }
+
+  setData(data) {
+    this.homeService.setData(data)
+      .subscribe(
+        response => {
+          console.log('response is', response  );
+          const newData = {...data, id: response.name};
+          console.log('final data ', newData);
+          this.studentData.push(newData);
+          this.updateDataSource();
+        },
+        error => {
+          // this.error.next(error.message);
+          console.log(error, ' error found ', error);
+        }
+      );
+  }
+
+
+  updateDataSource() {
+    this.dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
   }
 }
 
 
-
-// @Component({
-//   selector: 'app-modal',
-//   templateUrl: '../modal/modal.component.html',
-// })
-// export class DialogOverviewExampleDialog {
-
-//   constructor(
-//     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-//     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-
-// }
-
-
-
-
-
-
-
-
-
 export interface PeriodicElement {
-  id: number;
+  enrollmentId: number;
   name: string;
   age: number;
   sex: string;
   percentage: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 1881, name: 'Anurag Dixit', age: 21, sex: 'Male', percentage: '66%' },
-  { id: 1881, name: 'Anurag Dixit', age: 21, sex: 'Male', percentage: '66%' },
-  { id: 1881, name: 'Anurag Dixit', age: 21, sex: 'Male', percentage: '66%' },
-  { id: 1881, name: 'Anurag Dixit', age: 21, sex: 'Male', percentage: '66%' },
-];
-

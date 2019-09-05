@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ModalComponent } from './modal/modal.component';
     MaterialModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
