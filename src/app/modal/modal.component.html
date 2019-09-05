@@ -1,32 +1,28 @@
-<div mat-dialog-content class='mainClass'>
+
+<form class="example-container" [formGroup]='newGroup' (ngSubmit)='onClick()'>
   
         <mat-form-field>
-          <input matInput placeholder='ID' [(ngModel)]="data.enrollmentId">
+          <input matInput placeholder='ID' formControlName="enrollmentId" [value]='data.enrollmentId'>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder='Name' [(ngModel)]="data.name">
+          <input matInput placeholder='Name' formControlName="name" [value]='data.name'>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder='Age' [(ngModel)]="data.age">
+          <input matInput placeholder='Age' formControlName="age" [value]='data.age'>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder='Sex' [(ngModel)]="data.sex">
+          <input matInput placeholder='Sex' formControlName="sex" [value]='data.sex'>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder='Percentage' [(ngModel)]="data.percentage">
+          <input matInput placeholder='Percentage' formControlName="percentage" [value]='data.percentage'>
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
-        <button mat-raised-button color="warn" (click)='onAdd(data)' >Add</button>
- 
-      </div>
-      <!-- <div mat-dialog-actions> -->
-            <!-- </div> -->
+        <button mat-raised-button color="warn" type='submit' *ngIf='data.id' >Add</button>
+        <button mat-raised-button color="warn" type='submit' *ngIf='!data.id' >Update</button>
+        
+      </form>      
       
-      
-      <!-- Copyright 2019 Google Inc. All Rights Reserved.
-          Use of this source code is governed by an MIT-style license that
-          can be found in the LICENSE file at http://angular.io/license -->

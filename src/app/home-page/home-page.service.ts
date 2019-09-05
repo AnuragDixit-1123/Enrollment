@@ -49,6 +49,14 @@ deleteData(data) {
     );
 }
 
+updateData(data) {
+  console.log('update data called',data.id)
+  return this.http.put(
+             `https://angularguide.firebaseio.com/studentData/${data.id}.json`,
+             data
+  );
+}
+
 
 
 }

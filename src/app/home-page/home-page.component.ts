@@ -14,7 +14,7 @@ import { Subject } from 'rxjs';
 })
 export class HomePageComponent implements OnInit {
 
-  studentData: any[] = [];
+  studentData = [];
   displayedColumns: string[] = ['identity', 'name', 'age', 'sex', 'percentage', 'edit', 'delete'];
   dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
   error = new Subject<string>();
@@ -41,7 +41,8 @@ export class HomePageComponent implements OnInit {
      .subscribe(
       response => {
           console.log('response is', response);
-          this.updateStudentData(data.id);
+          // this.updateStudentData(data.id);
+          this.fetchData();
       },
       error => {
           this.error.next(error.message);
@@ -73,7 +74,10 @@ export class HomePageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
        console.log(result);
        if (result ) {
-        this.setData(result);
+        //  console.log('result found ', result)
+        // this.studentData.push(result);
+        // this.updateDataSource();
+        this.fetchData()
        }
     });
   }
@@ -92,25 +96,27 @@ export class HomePageComponent implements OnInit {
       );
   }
 
-  setData(data) {
-    this.homeService.setData(data)
-      .subscribe(
-        response => {
-          console.log('response is', response  );
-          const newData = {...data, id: response.name};
-          console.log('final data ', newData);
-          this.studentData.push(newData);
-          this.updateDataSource();
-        },
-        error => {
-          // this.error.next(error.message);
-          console.log(error, ' error found ', error);
-        }
-      );
-  }
+  // setData(data) {
+  //   this.homeService.setData(data)
+  //     .subscribe(
+  //       response => {
+  //         console.log('response is', response  );
+  //           const newData = {...data}
+  //           //  id: response.name};
+  //         console.log('final data ', newData);
+  //         this.studentData.push(newData);
+  //         this.updateDataSource();
+  //       },
+  //       error => {
+  //         // this.error.next(error.message);
+  //         console.log(error, ' error found ', error);
+  //       }
+  //     );
+  // }
 
 
   updateDataSource() {
+    console.log('update called', this.studentData)
     this.dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
   }
 }
