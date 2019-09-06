@@ -106,7 +106,7 @@ constructor( private http: HttpClient, private router: Router) {}
     autoLogout(expirationDuration: number) {
        this.tokenTimer = setTimeout(() => {
        this.logout();
-       }, 2000);
+       }, expirationDuration);
     }
 
     private handleAuthentication(
