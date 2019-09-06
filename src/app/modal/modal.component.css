@@ -4,3 +4,13 @@
 
     align-self: center;
 }
+
+mat-form-field {
+    display: block;
+}
+
+.buttons {
+
+    flex-direction: row;
+    justify-content: center
+}

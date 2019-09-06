@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { StudentData } from './student.model';
 import { Subject, throwError } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, tap, take, exhaustMap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -10,28 +11,29 @@ export class HomePageService {
 
 error = new Subject<string>();
 
-constructor(private http: HttpClient) {}
+constructor(private http: HttpClient, private authService: AuthService) {}
 
 fetchData() {
-    return this.http
-            .get(
-              'https://angularguide.firebaseio.com/studentData.json'
-            )
-            .pipe(
-              map(responseData => {
-                const postsArray = [];
-                for (const key in responseData) {
-                  if (responseData.hasOwnProperty(key)) {
-                    postsArray.push({ ...responseData[key], id: key });
-                  }
-                }
-                return postsArray;
-              }),
-              catchError(errorRes => {
-                return throwError(errorRes);
-              })
-            );
-          }
+
+  return this.http
+          .get(
+            'https://angularguide.firebaseio.com/studentData.json',
+          )
+          .pipe(
+            map(responseData => {
+            const postsArray = [];
+            for (const key in responseData) {
+              if (responseData.hasOwnProperty(key)) {
+                postsArray.push({ ...responseData[key], id: key });
+              }
+            }
+            return postsArray;
+          }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
 
 
   setData(data) {
@@ -50,7 +52,7 @@ deleteData(data) {
 }
 
 updateData(data) {
-  console.log('update data called',data.id)
+  console.log('update data called', data.id);
   return this.http.put(
              `https://angularguide.firebaseio.com/studentData/${data.id}.json`,
              data

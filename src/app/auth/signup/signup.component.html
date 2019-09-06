@@ -1,5 +1,17 @@
 
-<form class="example-container" [formGroup]='newGroup' (ngSubmit)='onClick()'>
+
+<div>
+
+  <div class="alert alert-danger" *ngIf='!isLoading && error'>
+     <p>{{ error }}</p>
+  </div>
+  
+  <div *ngIf='isLoading'>
+      <app-loader></app-loader>
+
+  </div>
+  <div>
+<form class="example-container" [formGroup]='newGroup' (ngSubmit)='onClick()' *ngIf='!isLoading'>
   <mat-form-field>
     <input matInput placeholder="First Name" formControlName="firstName" >
   </mat-form-field>
@@ -19,3 +31,5 @@
     Signup
   </button>
 </form>
+</div>
+</div>

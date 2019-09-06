@@ -77,7 +77,7 @@ export class HomePageComponent implements OnInit {
         //  console.log('result found ', result)
         // this.studentData.push(result);
         // this.updateDataSource();
-        this.fetchData()
+        this.fetchData();
        }
     });
   }
@@ -116,7 +116,7 @@ export class HomePageComponent implements OnInit {
 
 
   updateDataSource() {
-    console.log('update called', this.studentData)
+    console.log('update called', this.studentData);
     this.dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
   }
 }

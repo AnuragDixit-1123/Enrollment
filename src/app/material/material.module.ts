@@ -85,7 +85,7 @@ const MaterialComponents = [
   MatTreeModule,
   PortalModule,
   ScrollingModule,
-]
+];
 
 @NgModule({
   declarations: [],

@@ -18,11 +18,11 @@ export interface DialogData {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent  {
+export class ModalComponent implements OnInit {
 
   newGroup: FormGroup;
   constructor(
-    public dialogRef: MatDialogRef<Any>,
+    public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA)
     public data: DialogData,
     private homeService: HomePageService
@@ -33,7 +33,7 @@ export class ModalComponent  {
   }
 
   ngOnInit() {
-    this.initForm()
+    this.initForm();
    }
 
   // onAdd(data) {
@@ -43,20 +43,18 @@ export class ModalComponent  {
 
   onClick() {
     console.log('i was pressed', this.newGroup.value);
-    (this.data.id) ?  this.updateData(this.newGroup.value) : this.setData(this.newGroup.value)
-   
+    (this.data.id) ?  this.updateData(this.newGroup.value) : this.setData(this.newGroup.value);
   }
 
   initForm = () => {
     this.newGroup = new FormGroup({
       enrollmentId: new FormControl(this.data.enrollmentId),
-      name: new FormControl(this.data.name), 
+      name: new FormControl(this.data.name),
       age: new FormControl(this.data.age),
       sex: new FormControl(this.data.sex),
       percentage: new FormControl(this.data.percentage),
       id: new FormControl(this.data.id)
-     
-      })
+    });
   }
 
   setData(data) {
@@ -65,13 +63,13 @@ export class ModalComponent  {
         response => {
           console.log('response is', response  );
           let newData;
-          if(response.name){
-            newData = {...data, id: response.name};
-          }
-          else {
-            newData = {...data };
-          }
-          console.log('newData === ', newData) 
+          // if(response){
+          //   newData = {...data, id: response.name};
+          // }
+          // else {
+          newData = {...data };
+          // }
+          console.log('newData === ', newData);
           this.dialogRef.close(true);
         },
         error => {
@@ -93,7 +91,7 @@ export class ModalComponent  {
           // else {
           //   newData = {...data };
           // }
-          // console.log('newData === ', newData) 
+          // console.log('newData === ', newData)
           this.dialogRef.close(true);
         },
         error => {
