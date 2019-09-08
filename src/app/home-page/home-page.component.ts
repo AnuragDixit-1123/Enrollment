@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
@@ -7,34 +8,59 @@ import { HomePageService } from './home-page.service';
 import { Subject } from 'rxjs';
 
 
+export interface PeriodicElement {
+  enrollmentId: number;
+  name: string;
+  age: number;
+  sex: string;
+  percentage: string;
+}
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
+
+
+
 export class HomePageComponent implements OnInit {
 
   studentData = [];
-  displayedColumns: string[] = ['identity', 'name', 'age', 'sex', 'percentage', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
+  displayedColumns: string[] = ['enrollmentId', 'name', 'age', 'sex', 'percentage', 'edit', 'delete'];
+
+  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource : MatTableDataSource<PeriodicElement>;
+  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
   error = new Subject<string>();
 
+  length = 0;
+  pageSize = 10;
+  // pageSizeOptions: number[] = [5, 10, 25, 100];
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private homeService: HomePageService, public dialog: MatDialog) {}
 
-  ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+  constructor(private homeService: HomePageService, public dialog: MatDialog) {
     this.fetchData();
   }
 
-  updateStudentData(id) {
-    const index = this.studentData.findIndex( (element) => {
-      return element.id === id;
-    });
-    this.studentData.splice(index, 1);
-    this.updateDataSource();
+  ngOnInit() {
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+
+    // this.fetchData();
   }
+
+  // updateStudentData(id) {
+  //   const index = this.studentData.findIndex( (element) => {
+  //     return element.id === id;
+  //   });
+  //   this.studentData.splice(index, 1);
+  //   this.updateDataSource();
+  // }
 
   onDelete(data) {
     this.homeService.deleteData(data.id)
@@ -87,7 +113,11 @@ export class HomePageComponent implements OnInit {
       .subscribe(
         response => {
             this.studentData = response;
-            this.updateDataSource();
+            this.dataSource = new MatTableDataSource<PeriodicElement>(response);
+            this.dataSource.sort = this.sort;
+            this.length = this.studentData.length
+            // console.log(this.studentData) 
+            // this.updateDataSource();
         },
         error => {
             this.error.next(error.message);
@@ -119,13 +149,39 @@ export class HomePageComponent implements OnInit {
     console.log('update called', this.studentData);
     this.dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
   }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
 
 
-export interface PeriodicElement {
-  enrollmentId: number;
-  name: string;
-  age: number;
-  sex: string;
-  percentage: string;
-}
+
+
+// export interface PeriodicElement {
+//   name: string;
+//   position: number;
+//   weight: number;
+//   symbol: string;
+// }
+
+['identity', 'name', 'age', 'sex', 'percentage', 'edit', 'delete']
+
+// const ELEMENT_DATA: PeriodicElement[] = [
+//   {age: "23",
+//   enrollmentId: "1881",
+//   id: "-LoGdxwUCgWqu_k3Nrcx",
+//   name: "Anurag Dixit",
+//   percentage: "66",
+//   sex: "Male"},
+//   {age: "24",
+//   enrollmentId: "1882",
+//   id: "-LoGdxwUCgWqu_k3Nrcx",
+//   name: "Anurag sharma",
+//   percentage: "66",
+//   sex: "Male"},
+//  ];

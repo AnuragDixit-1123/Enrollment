@@ -2,6 +2,7 @@
 <form class="example-container" [formGroup]='newGroup' (ngSubmit)='onClick()'>
   <mat-form-field>
     <input matInput placeholder='ID' formControlName="enrollmentId" [value]='data.enrollmentId'>
+    <p *ngIf='enrollmentId.invalid'>Error found</p>
   </mat-form-field>
   <br>
   <mat-form-field>
