@@ -1,28 +1,119 @@
-<form class="example-container" [formGroup]='loginForm' (ngSubmit)='onClick()'>
-  <mat-form-field >
-    <input matInput placeholder="Enter your email" formControlName="email" >
-  </mat-form-field><br>
-  <mat-form-field>
-    <input matInput placeholder="password" type='password' formControlName="password" >
-  </mat-form-field><br>
-  <button mat-raised-button color="primary">
-    Login
-  </button>      
-</form>
 
-<div class="container">
-  <div class="row">
-    
-    <form class="example-container" [formGroup]='loginForm' (ngSubmit)='onClick()'>
-      <mat-form-field >
-        <input matInput placeholder="Enter your email" formControlName="email" >
-      </mat-form-field><br>
-      <mat-form-field>
-        <input matInput placeholder="password" type='password' formControlName="password" >
-      </mat-form-field><br>
-      <button mat-raised-button color="primary">
-        Login
-      </button>      
-    </form>
+
+<!-- <div class="container"> -->
+    <!-- <div *ngIf='!isLoading'>
+        <app-loader></app-loader>
+  
+    </div> -->
+  <!-- <div class="row">
+
+      <form class="example-container" [formGroup]='loginForm' (ngSubmit)='onClick()'>
+          <div class="form-group">
+ 
+        <mat-form-field >
+            <input matInput placeholder="Enter your email" formControlName="email" >
+            <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput placeholder="password" type='password' formControlName="password" >
+            <mat-error *ngIf="loginForm.get('password').invalid">{{getErrorMessage('password')}}</mat-error>
+
+          </mat-form-field><br>
+          <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+            Login
+          </button> 
+        </div>     
+        </form>
   </div>
+</div> -->
+
+<!-- <div class="row">
+    <aside class="col-sm-4">
+  <p>Login form style 1</p>
+  <div class="card">
+  <article class="card-body">
+  <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+  <h4 class="card-title mb-4 mt-1">Sign in</h4>
+  <div class='example-containe'>  
+    <form  [formGroup]='loginForm' (ngSubmit)='onClick()'>
+
+  <mat-form-field >
+      <input matInput placeholder="Enter your email" formControlName="email" >
+      <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput placeholder="password" type='password' formControlName="password" >
+      <mat-error *ngIf="loginForm.get('password').invalid">{{getErrorMessage('password')}}</mat-error>
+
+    </mat-form-field><br>
+    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+      Login
+    </button> 
+  </form>
 </div>
+
+  </article>
+  </div> -->
+
+  <div class="container-fluid">
+      <div class='mainClass'>
+          <div class="card">
+              <div class="card-header">
+                <div class='cardHeader'> <h5>Sign In</h5>
+                  <button mat-raised-button color="primary" >
+                      Sign Up
+                    </button>
+                  
+                  </div>
+               
+              </div>
+
+              <div class="card-body">
+                  <form class="example-container" [formGroup]='loginForm' (ngSubmit)='onClick()'>
+                     
+            
+                  <mat-form-field >
+                      <input matInput placeholder="Enter your email" formControlName="email" >
+                      <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+                    </mat-form-field><br>
+                    <mat-form-field>
+                      <input matInput placeholder="password" type='password' formControlName="password" >
+                      <mat-error *ngIf="loginForm.get('password').invalid">{{getErrorMessage('password')}}</mat-error>
+            
+                    </mat-form-field><br>
+                    <button class='loginButton' mat-raised-button color="primary" [disabled]="!loginForm.valid">
+                      Login
+                    </button> 
+                  </form>
+
+              </div>
+
+            </div>
+     
+      </div>         
+  </div>
+
+    
+
+ <!-- <div class= 'section'>
+    <div class= 'article'>
+        <form class="example-container" [formGroup]='loginForm' (ngSubmit)='onClick()'>
+          <div class="form-group">
+              <p>Login Form</p>
+
+      <mat-form-field >
+          <input matInput placeholder="Enter your email" formControlName="email" >
+          <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="password" type='password' formControlName="password" >
+          <mat-error *ngIf="loginForm.get('password').invalid">{{getErrorMessage('password')}}</mat-error>
+
+        </mat-form-field><br>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+          Login
+        </button> 
+      </div>     
+      </form>
+    </div>
+  </div> -->

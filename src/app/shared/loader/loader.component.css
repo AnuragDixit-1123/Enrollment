@@ -1,3 +1,27 @@
+
+.containerClass {
+  /* align-items: center;
+  justify-content: center; */
+
+  position: absolute;
+  /* display: block; */
+  /* top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+  Width: 100vw;
+  height: 100vh;
+  background-color: rgba(74,74,74,.1);
+  z-index: 1999999999;
+}
+
+.row {
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px
+
+}
+
 .lds-ring {
     display: inline-block;
     position: relative;

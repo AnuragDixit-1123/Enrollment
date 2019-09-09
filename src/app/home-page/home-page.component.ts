@@ -33,10 +33,12 @@ export class HomePageComponent implements OnInit {
   dataSource : MatTableDataSource<PeriodicElement>;
   // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
+  
+  isLoading = false;
   error = new Subject<string>();
 
-  length = 0;
-  pageSize = 10;
+  length = 5;
+  pageSize = 5;
   // pageSizeOptions: number[] = [5, 10, 25, 100];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -63,6 +65,11 @@ export class HomePageComponent implements OnInit {
   // }
 
   onDelete(data) {
+
+    const  confirmation = confirm("Press a button!")
+    if(confirmation) {
+      this.isLoading = true;
+
     this.homeService.deleteData(data.id)
      .subscribe(
       response => {
@@ -73,8 +80,11 @@ export class HomePageComponent implements OnInit {
       error => {
           this.error.next(error.message);
           console.log(error, ' error found ', error);
+          this.isLoading = false;
+
       }
     );
+    }
   }
 
   openModel(data) {
@@ -109,19 +119,26 @@ export class HomePageComponent implements OnInit {
   }
 
   fetchData() {
+    this.isLoading = true;
+
     this.homeService.fetchData()
       .subscribe(
         response => {
             this.studentData = response;
             this.dataSource = new MatTableDataSource<PeriodicElement>(response);
             this.dataSource.sort = this.sort;
-            this.length = this.studentData.length
+            this.length = this.studentData.length;
+            this.dataSource.paginator = this.paginator;
+            this.isLoading = false;
+
             // console.log(this.studentData) 
             // this.updateDataSource();
         },
         error => {
             this.error.next(error.message);
             console.log(error, ' error found ', error);
+            this.isLoading = false;
+
         }
       );
   }

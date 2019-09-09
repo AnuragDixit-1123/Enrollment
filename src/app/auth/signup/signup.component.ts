@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators, FormGroup } from '@angular/forms';
+import {FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit{
 
-  newGroup: FormGroup;
+  signUpForm: FormGroup;
 
   constructor(private authService: AuthService ) {}
 
@@ -21,10 +21,10 @@ export class SignupComponent implements OnInit{
   }
 
   onClick() {
-    console.log('i was pressed', this.newGroup.value);
+    console.log('i was pressed', this.signUpForm.value);
 
-    const email = this.newGroup.value.email;
-    const password = this.newGroup.value.password;
+    const email = this.signUpForm.value.email;
+    const password = this.signUpForm.value.password;
 
     console.log(email, password)
     this.isLoading = true
@@ -45,14 +45,43 @@ export class SignupComponent implements OnInit{
   }
 
   initForm = () => {
-    this.newGroup = new FormGroup({
-      firstName: new FormControl(''),
+    this.signUpForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
       lastName: new FormControl(''), 
-      email: new FormControl(''),
-      password: new FormControl(''),
-      confirmPassword: new FormControl('')
+      email: new FormControl('',[Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
       })
   }
+
+
+
+  getErrorMessage(errorField) {
+
+    switch (errorField) {
+      case 'email' : {
+        return this.signUpForm.get('email').hasError('required') ? 'You must enter a value' :
+          this.signUpForm.get('email').hasError('email') ? 'Not a valid email' : '';
+      }
+      case 'password': {
+        return this.signUpForm.get('password').hasError('required') ? 'You must enter a value' :
+          this.signUpForm.get('password').hasError('minlength') ? 'Minimum 6 characters required' :
+        '';
+      }
+      case 'firstName' : {
+        return this.signUpForm.get('firstName').hasError('required') ? 'You must enter a value' : '';
+      }
+      case 'confirmPassword': {
+        return this.signUpForm.get('confirmPassword').hasError('required') ? 'You must enter a value' :
+        this.signUpForm.get('confirmPassword').hasError('minlength') ? 'Minimum 6 characters required' :
+        // this.signUpForm.get('confirmPassword').hasError('validate') ? 'Minimum 61 characters required' :
+         '';
+      }
+      default : ''
+    }
+    
+      
+    }
 
   }
   

@@ -21,6 +21,7 @@ export interface DialogData {
 export class ModalComponent implements OnInit {
 
   newGroup: FormGroup;
+  list = ['Male', 'Female', 'Transgender'];
   constructor(
     public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA)
@@ -48,7 +49,7 @@ export class ModalComponent implements OnInit {
 
   initForm = () => {
     this.newGroup = new FormGroup({
-      enrollmentId: new FormControl(this.data.enrollmentId),
+      enrollmentId: new FormControl(this.data.enrollmentId, [Validators.required]),
       name: new FormControl(this.data.name),
       age: new FormControl(this.data.age),
       sex: new FormControl(this.data.sex),

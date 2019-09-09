@@ -1,8 +1,9 @@
 
 <form class="example-container" [formGroup]='newGroup' (ngSubmit)='onClick()'>
   <mat-form-field>
-    <input matInput placeholder='ID' formControlName="enrollmentId" [value]='data.enrollmentId'>
-    <p *ngIf='enrollmentId.invalid'>Error found</p>
+    <input matInput placeholder='ID' formControlName="enrollmentId" [value]='data.enrollmentId' type='number'>
+    <mat-error *ngIf="newGroup.get('enrollmentId').invalid">Required</mat-error>
+
   </mat-form-field>
   <br>
   <mat-form-field>
@@ -10,15 +11,19 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder='Age' formControlName="age" [value]='data.age'>
+    <input matInput placeholder='Age' formControlName="age" [value]='data.age' type='number'>
   </mat-form-field>
   <br>
-  <mat-form-field>
-    <input matInput placeholder='Sex' formControlName="sex" [value]='data.sex'>
-  </mat-form-field>
+  <!-- <mat-form-field> -->
+    <!-- <input matInput placeholder='Sex' formControlName="sex" [value]='data.sex'> -->
+    <mat-radio-group aria-label="Select an option" formControlName="sex" >
+
+        <mat-radio-button color='primary' [value]='item' *ngFor="let item of list">{{item}}</mat-radio-button>
+      </mat-radio-group>
+  <!-- </mat-form-field> -->
   <br>
   <mat-form-field>
-    <input matInput placeholder='Percentage' formControlName="percentage" [value]='data.percentage'>
+    <input matInput placeholder='Percentage' formControlName="percentage" [value]='data.percentage' type='number'>
   </mat-form-field>
   <br>
   <div class='buttons'>

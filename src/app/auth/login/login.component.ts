@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+
+
   isLoading = false;
-  error = null;
+  error: string  = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -44,9 +46,25 @@ export class LoginComponent implements OnInit {
 
   initForm = () => {
     this.loginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+      email : new FormControl('', [Validators.required, Validators.email]),
+      password : new FormControl('', [Validators.required])
       });
 
+}
+
+getErrorMessage(errorField) {
+
+switch (errorField) {
+  case 'email' : {
+    return this.loginForm.get('email').hasError('required') ? 'You must enter a value' :
+      this.loginForm.get('email').hasError('email') ? 'Not a valid email' : '';
+  }
+  case 'password': {
+    return this.loginForm.get('password').hasError('required') ? 'You must enter a value' : '';
+  }
+  default : ''
+}
+
+  
 }
 }
