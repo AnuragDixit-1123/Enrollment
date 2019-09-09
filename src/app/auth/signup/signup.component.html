@@ -1,5 +1,13 @@
 
 
+<div *ngIf='isLoading'>
+    <app-loader></app-loader>
+
+</div>
+
+<div class="alert alert-danger" *ngIf='!isLoading && error'>
+    <p>{{ error }}</p>
+ </div>
 
  <div class="container-fluid">
     <div class='mainClass'>
@@ -16,7 +24,7 @@
 
             <div class="card-body">
                 
-                <form class="example-container" [formGroup]='signUpForm' (ngSubmit)='onClick()' *ngIf='!isLoading'>
+                <form class="example-container" [formGroup]='signUpForm' (ngSubmit)='onClick()' >
                     <mat-form-field>
                       <input matInput placeholder="First Name" formControlName="firstName" >
                       <mat-error *ngIf="signUpForm.get('firstName').invalid">{{getErrorMessage('firstName')}}</mat-error>

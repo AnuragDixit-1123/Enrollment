@@ -37,8 +37,8 @@ export class HomePageComponent implements OnInit {
   isLoading = false;
   error = new Subject<string>();
 
-  length = 5;
-  pageSize = 5;
+  length = 15;
+  pageSize = 15;
   // pageSizeOptions: number[] = [5, 10, 25, 100];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

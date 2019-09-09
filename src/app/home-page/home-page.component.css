@@ -25,6 +25,10 @@ td, th {
   padding-bottom: 20px;
 }
 
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
 
 
 
@@ -32,5 +36,5 @@ td, th {
   /* background-color: red; */
   align-items: flex-end;
   width: 90%;
-  margin-top: 150px;
+  padding-top: 5%;
 }

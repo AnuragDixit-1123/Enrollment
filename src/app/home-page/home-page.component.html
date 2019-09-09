@@ -1,5 +1,11 @@
 
 
+
+<div *ngIf='isLoading'>
+    <app-loader></app-loader>
+
+</div>
+
  <div class="container-fluid">
     <div class='mainClass'>
 
@@ -8,7 +14,7 @@
             <div class="card-header">
                 <div class='cardHeader'> 
                   <div></div>
-                 <h5>Table Data</h5>
+                 <h5 i18n='Title | Heading for the Table@@Tabletitle'>Table Data</h5>
                   <mat-form-field>
                       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
                     </mat-form-field>
@@ -17,8 +23,9 @@
               </div>
  
     <div class="card-body">
+      <div class="example-container mat-elevation-z8">
 
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort >
       
             <ng-container matColumnDef="enrollmentId">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
@@ -59,10 +66,10 @@
               </td>    
             </ng-container>
               
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-
+      </div>
           <mat-paginator
           [length]="length"
          [pageSize]="pageSize"

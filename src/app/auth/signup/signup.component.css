@@ -19,10 +19,10 @@
 
 
  .container-fluid {
-   background-color: red;
+   /* background-color: red; */
    align-items: flex-end;
    width: 30%;
-   margin-top: 150px;
+   padding-top: 5%;
  }
 
  .cardHeader {
