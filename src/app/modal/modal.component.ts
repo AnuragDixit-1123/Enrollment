@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { HomePageService } from '../home-page/home-page.service';
 import {FormControl, Validators, FormGroup } from '@angular/forms';
+import { CONSTANTS, ERROR_MESSAGES  } from '../shared/constant';
 
 export interface DialogData {
   name: string;
@@ -21,6 +22,7 @@ export class ModalComponent implements OnInit {
 
   studentData: FormGroup;
   list = ['Male', 'Female', 'Transgender'];
+  CONSTANTS = CONSTANTS;
 
   constructor(
     public dialogRef: MatDialogRef<any>,
@@ -83,19 +85,19 @@ export class ModalComponent implements OnInit {
 
     switch (errorField) {
       case 'enrollmentId' : {
-        return this.studentData.get('enrollmentId').hasError('required') ? 'You must enter a value' : '';
+        return this.studentData.get('enrollmentId').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED : '';
         }
       case 'name': {
-        return this.studentData.get('name').hasError('required') ? 'You must enter a value' : '';
+        return this.studentData.get('name').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED : '';
         }
         case 'age' : {
-          return this.studentData.get('age').hasError('required') ? 'You must enter a value' : '';
+          return this.studentData.get('age').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED : '';
           }
         case 'sex': {
-          return this.studentData.get('sex').hasError('required') ? 'You must enter a value' : '';
+          return this.studentData.get('sex').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED : '';
           }
         case 'percentage': {
-          return this.studentData.get('percentage').hasError('required') ? 'You must enter a value' : '';
+          return this.studentData.get('percentage').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED : '';
         }
       default: '';
     }

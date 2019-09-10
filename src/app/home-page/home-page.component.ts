@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { HomePageService } from './home-page.service';
 import { Subject } from 'rxjs';
+import { CONSTANTS  } from '../shared/constant';
+import { AuthService } from '../auth/auth.service';
 
 export interface PeriodicElement {
   enrollmentId: number;
@@ -30,11 +32,12 @@ export class HomePageComponent implements OnInit {
   error = new Subject<string>();
   length = 10;
   pageSize = 10;
+  CONSTANTS = CONSTANTS;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private homeService: HomePageService, public dialog: MatDialog) {}
+  constructor(private homeService: HomePageService, public dialog: MatDialog, private authService: AuthService) {}
 
   ngOnInit() {
     this.fetchData();
@@ -108,6 +111,11 @@ export class HomePageComponent implements OnInit {
 
   updateDataSource() {
     this.dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
+  }
+
+  logout() {
+    this.authService.logout()
+
   }
 
   applyFilter(filterValue: string) {

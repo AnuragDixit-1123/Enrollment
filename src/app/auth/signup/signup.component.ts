@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { CONSTANTS  } from '../../shared/constant';
+import { CONSTANTS, ERROR_MESSAGES } from '../../shared/constant';
 
 @Component({
   selector: 'app-signup',
@@ -23,13 +23,13 @@ export class SignupComponent implements OnInit{
   }
 
   onClick() {
+    this.error = null;
     const email = this.signUpForm.value.email;
     const password = this.signUpForm.value.password;
     this.isLoading = true;
     this.authService.signUp(email, password)
       .subscribe(
         response => {
-          this.error = null;
           this.isLoading = false;
         },
         error => {
@@ -63,21 +63,21 @@ export class SignupComponent implements OnInit{
   getErrorMessage(errorField) {
     switch (errorField) {
       case 'email' : {
-        return this.signUpForm.get('email').hasError('required') ? 'You must enter a value' :
-          this.signUpForm.get('email').hasError('email') ? 'Not a valid email' : '';
+        return this.signUpForm.get('email').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED :
+          this.signUpForm.get('email').hasError('email') ? ERROR_MESSAGES.COMMON.EMAIL : '';
       }
       case 'password': {
-        return this.signUpForm.get('password').hasError('required') ? 'You must enter a value' :
-          this.signUpForm.get('password').hasError('minlength') ? 'Minimum 6 characters required' :
+        return this.signUpForm.get('password').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED :
+          this.signUpForm.get('password').hasError('minlength') ? ERROR_MESSAGES.SIGN_UP.PASSWORD_LENGTH :
           '';
       }
       case 'firstName' : {
-        return this.signUpForm.get('firstName').hasError('required') ? 'You must enter a value' : '';
+        return this.signUpForm.get('firstName').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED : '';
       }
       case 'confirmPassword': {
-        return this.signUpForm.get('confirmPassword').hasError('required') ? 'You must enter a value' :
-          this.signUpForm.get('confirmPassword').hasError('minlength') ? 'Minimum 6 characters required' :
-          this.signUpForm.get('confirmPassword').hasError('passwordMatch') ? 'Password Donot match' :
+        return this.signUpForm.get('confirmPassword').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED :
+          this.signUpForm.get('confirmPassword').hasError('minlength') ? ERROR_MESSAGES.SIGN_UP.PASSWORD_LENGTH :
+          this.signUpForm.get('confirmPassword').hasError('passwordMatch') ? ERROR_MESSAGES.SIGN_UP.PASSWORD_MATCH :
            '';
       }
       default : '';

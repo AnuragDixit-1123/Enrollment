@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { CONSTANTS  } from '../../shared/constant';
+import { CONSTANTS, ERROR_MESSAGES } from '../../shared/constant';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   onClick() {
+    this.error = null;
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.isLoading = true;
@@ -50,11 +51,11 @@ export class LoginComponent implements OnInit {
 
     switch (errorField) {
       case 'email' : {
-        return this.loginForm.get('email').hasError('required') ? 'You must enter a value' :
-               this.loginForm.get('email').hasError('email') ? 'Not a valid email' : '';
+        return this.loginForm.get('email').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED :
+               this.loginForm.get('email').hasError('email') ? ERROR_MESSAGES.COMMON.EMAIL : '';
         }
       case 'password': {
-        return this.loginForm.get('password').hasError('required') ? 'You must enter a value' : '';
+        return this.loginForm.get('password').hasError('required') ? ERROR_MESSAGES.COMMON.REQUIRED : '';
         }
       default: '';
     }

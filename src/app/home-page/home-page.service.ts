@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -10,7 +9,7 @@ export class HomePageService {
 
   error = new Subject<string>();
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient ) {}
 
   fetchData() {
     return this.http

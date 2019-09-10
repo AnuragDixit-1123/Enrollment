@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { ERROR_MESSAGES } from '../shared/constant';
 
 interface AuthResponseData {
     kind: string;
@@ -117,19 +118,19 @@ signUp(email: string, password: string) {
     }
 
     private handleError(errorRes: HttpErrorResponse) {
-      let errorMessage = 'An unknown error occurred!';
+      let errorMessage = ERROR_MESSAGES.LOGIN.STATIC_ERROR;
       if (!errorRes.error || !errorRes.error.error) {
         return throwError(errorMessage);
       }
       switch (errorRes.error.error.message) {
         case 'EMAIL_EXISTS':
-          errorMessage = 'This email exists already';
+          errorMessage = ERROR_MESSAGES.LOGIN.EMAIL_EXISTS;
           break;
         case 'EMAIL_NOT_FOUND':
-          errorMessage = 'This email does not exist.';
+          errorMessage = ERROR_MESSAGES.LOGIN.EMAIL_NOT_FOUND;
           break;
         case 'INVALID_PASSWORD':
-          errorMessage = 'This password is not correct.';
+          errorMessage = ERROR_MESSAGES.LOGIN.INVALID_PASSWORD;
           break;
       }
       return throwError(errorMessage);

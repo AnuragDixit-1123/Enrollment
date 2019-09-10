@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
        
-          <h5>Student Data</h5>
+          <h5>{{ CONSTANTS.HEADINGS.STUDENT_DATA }}</h5>
          
       </div>
 
@@ -9,21 +9,21 @@
 
 <form class="example-container" [formGroup]='studentData'>
   <mat-form-field>
-    <input matInput placeholder='ID' formControlName="enrollmentId" [value]='data.enrollmentId' type='number'>
+    <input matInput [placeholder]='CONSTANTS.STUDENT_DATA.ENROLLMENT_ID' formControlName="enrollmentId" [value]='data.enrollmentId' type='number'>
     <mat-error *ngIf="studentData.get('enrollmentId').invalid">
       {{getErrorMessage('enrollmentId')}}
     </mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder='Name' formControlName="name" [value]='data.name'>
+    <input matInput [placeholder]='CONSTANTS.STUDENT_DATA.NAME' formControlName="name" [value]='data.name'>
     <mat-error *ngIf="studentData.get('name').invalid"> 
       {{getErrorMessage('name')}}
     </mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder='Age' formControlName="age" [value]='data.age' type='number'>
+    <input matInput [placeholder]='CONSTANTS.STUDENT_DATA.AGE' formControlName="age" [value]='data.age' type='number'>
     <mat-error *ngIf="studentData.get('age').invalid"> 
       {{getErrorMessage('age')}}
     </mat-error>
@@ -37,7 +37,7 @@
   </mat-radio-group>
   <br>
   <mat-form-field>
-    <input matInput placeholder='Percentage' formControlName="percentage" [value]='data.percentage' type='number'>
+    <input matInput [placeholder]='CONSTANTS.STUDENT_DATA.PERCENTAGE' formControlName="percentage" [value]='data.percentage' type='number'>
     <mat-error *ngIf="studentData.get('percentage').invalid"> 
       {{getErrorMessage('percentage')}}
     </mat-error>
@@ -48,9 +48,9 @@
 </div>
 <div class="card-footer">
     <div class='buttons'>
-        <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
-        <button mat-raised-button color="warn" (click)='onClick()' *ngIf='!data.id' [disabled]="!studentData.valid" class='modalButton'>Add</button>
-        <button mat-raised-button color="warn" (click)='onClick()' *ngIf='data.id' [disabled]="!studentData.valid" class='modalButton'>Update</button>
+        <button mat-raised-button color="primary" (click)="onCancel()">{{CONSTANTS.BUTTONS.CANCEL}}</button>
+        <button mat-raised-button color="warn" (click)='onClick()' *ngIf='!data.id' [disabled]="!studentData.valid" class='modalButton'>{{CONSTANTS.BUTTONS.ADD}}</button>
+        <button mat-raised-button color="warn" (click)='onClick()' *ngIf='data.id' [disabled]="!studentData.valid" class='modalButton'>{{CONSTANTS.BUTTONS.UPDATE}}</button>
       </div>
 </div>
 
