@@ -7,7 +7,6 @@ import { ModalComponent } from '../modal/modal.component';
 import { HomePageService } from './home-page.service';
 import { Subject } from 'rxjs';
 
-
 export interface PeriodicElement {
   enrollmentId: number;
   name: string;
@@ -22,68 +21,40 @@ export interface PeriodicElement {
   styleUrls: ['./home-page.component.css']
 })
 
-
-
 export class HomePageComponent implements OnInit {
 
   studentData = [];
   displayedColumns: string[] = ['enrollmentId', 'name', 'age', 'sex', 'percentage', 'edit', 'delete'];
-
-  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource : MatTableDataSource<PeriodicElement>;
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  
+  dataSource: MatTableDataSource<PeriodicElement>;
   isLoading = false;
   error = new Subject<string>();
-
-  length = 15;
-  pageSize = 15;
-  // pageSizeOptions: number[] = [5, 10, 25, 100];
+  length = 10;
+  pageSize = 10;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  constructor(private homeService: HomePageService, public dialog: MatDialog) {}
 
-  constructor(private homeService: HomePageService, public dialog: MatDialog) {
+  ngOnInit() {
     this.fetchData();
   }
 
-  ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-
-    // this.fetchData();
-  }
-
-  // updateStudentData(id) {
-  //   const index = this.studentData.findIndex( (element) => {
-  //     return element.id === id;
-  //   });
-  //   this.studentData.splice(index, 1);
-  //   this.updateDataSource();
-  // }
-
   onDelete(data) {
+    const  confirmation = confirm('Are you sure you want to delete');
 
-    const  confirmation = confirm("Press a button!")
-    if(confirmation) {
+    if (confirmation) {
       this.isLoading = true;
-
-    this.homeService.deleteData(data.id)
-     .subscribe(
-      response => {
-          console.log('response is', response);
-          // this.updateStudentData(data.id);
-          this.fetchData();
-      },
-      error => {
-          this.error.next(error.message);
-          console.log(error, ' error found ', error);
-          this.isLoading = false;
-
-      }
-    );
+      this.homeService.deleteData(data.id)
+      .subscribe(
+        response => {
+            this.fetchData();
+        },
+        error => {
+            this.error.next(error.message);
+            this.isLoading = false;
+        }
+      );
     }
   }
 
@@ -91,15 +62,15 @@ export class HomePageComponent implements OnInit {
     let studentData = data;
 
     if (!data) {
-       studentData = {
+      studentData = {
         age: null,
         enrollmentId: null,
         id: '',
         name: '',
         percentage: '',
-        sex: ''
-       };
-     }
+        sex: 'Male'
+      };
+    }
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '50vw',
@@ -108,13 +79,10 @@ export class HomePageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-       console.log(result);
-       if (result ) {
-        //  console.log('result found ', result)
-        // this.studentData.push(result);
-        // this.updateDataSource();
+
+      if (result ) {
         this.fetchData();
-       }
+      }
     });
   }
 
@@ -130,40 +98,15 @@ export class HomePageComponent implements OnInit {
             this.length = this.studentData.length;
             this.dataSource.paginator = this.paginator;
             this.isLoading = false;
-
-            // console.log(this.studentData) 
-            // this.updateDataSource();
         },
         error => {
-            this.error.next(error.message);
-            console.log(error, ' error found ', error);
-            this.isLoading = false;
-
+          this.error.next(error.message);
+          this.isLoading = false;
         }
       );
   }
 
-  // setData(data) {
-  //   this.homeService.setData(data)
-  //     .subscribe(
-  //       response => {
-  //         console.log('response is', response  );
-  //           const newData = {...data}
-  //           //  id: response.name};
-  //         console.log('final data ', newData);
-  //         this.studentData.push(newData);
-  //         this.updateDataSource();
-  //       },
-  //       error => {
-  //         // this.error.next(error.message);
-  //         console.log(error, ' error found ', error);
-  //       }
-  //     );
-  // }
-
-
   updateDataSource() {
-    console.log('update called', this.studentData);
     this.dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
   }
 
@@ -175,30 +118,3 @@ export class HomePageComponent implements OnInit {
     }
   }
 }
-
-
-
-
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-['identity', 'name', 'age', 'sex', 'percentage', 'edit', 'delete']
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {age: "23",
-//   enrollmentId: "1881",
-//   id: "-LoGdxwUCgWqu_k3Nrcx",
-//   name: "Anurag Dixit",
-//   percentage: "66",
-//   sex: "Male"},
-//   {age: "24",
-//   enrollmentId: "1882",
-//   id: "-LoGdxwUCgWqu_k3Nrcx",
-//   name: "Anurag sharma",
-//   percentage: "66",
-//   sex: "Male"},
-//  ];

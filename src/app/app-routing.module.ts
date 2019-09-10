@@ -7,11 +7,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
-   
-    { path: '' , component: HomePageComponent, pathMatch: 'full' },
+    { path: '' ,  redirectTo: '/home-page', pathMatch: 'full' },
     { path: 'login' , component: LoginComponent, pathMatch: 'full' },
     { path: 'signup' , component: SignupComponent, pathMatch: 'full' },
-    { path: 'homePage' , component: HomePageComponent, canActivate: [AuthGuard] },
+    { path: 'home-page' , component: HomePageComponent, canActivate: [AuthGuard] },
 
 ];
 

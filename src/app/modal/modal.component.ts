@@ -3,7 +3,6 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { HomePageService } from '../home-page/home-page.service';
 import {FormControl, Validators, FormGroup } from '@angular/forms';
 
-
 export interface DialogData {
   name: string;
   age: number;
@@ -20,8 +19,9 @@ export interface DialogData {
 })
 export class ModalComponent implements OnInit {
 
-  newGroup: FormGroup;
+  studentData: FormGroup;
   list = ['Male', 'Female', 'Transgender'];
+
   constructor(
     public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA)
@@ -37,23 +37,17 @@ export class ModalComponent implements OnInit {
     this.initForm();
    }
 
-  // onAdd(data) {
-  //   console.log(data,'i was called', this.data);
-  //   this.dialogRef.close(this.data)
-  // }
-
   onClick() {
-    console.log('i was pressed', this.newGroup.value);
-    (this.data.id) ?  this.updateData(this.newGroup.value) : this.setData(this.newGroup.value);
+    (this.data.id) ?  this.updateData(this.studentData.value) : this.setData(this.studentData.value);
   }
 
   initForm = () => {
-    this.newGroup = new FormGroup({
+    this.studentData = new FormGroup({
       enrollmentId: new FormControl(this.data.enrollmentId, [Validators.required]),
-      name: new FormControl(this.data.name),
-      age: new FormControl(this.data.age),
-      sex: new FormControl(this.data.sex),
-      percentage: new FormControl(this.data.percentage),
+      name: new FormControl(this.data.name, [Validators.required]),
+      age: new FormControl(this.data.age, [Validators.required]),
+      sex: new FormControl(this.data.sex, [Validators.required]),
+      percentage: new FormControl(this.data.percentage, [Validators.required]),
       id: new FormControl(this.data.id)
     });
   }
@@ -62,15 +56,6 @@ export class ModalComponent implements OnInit {
     this.homeService.setData(data)
       .subscribe(
         response => {
-          console.log('response is', response  );
-          let newData;
-          // if(response){
-          //   newData = {...data, id: response.name};
-          // }
-          // else {
-          newData = {...data };
-          // }
-          console.log('newData === ', newData);
           this.dialogRef.close(true);
         },
         error => {
@@ -84,15 +69,7 @@ export class ModalComponent implements OnInit {
     this.homeService.updateData(data)
       .subscribe(
         response => {
-          console.log('update response is', response  );
-          // let newData;
-          // if(response.name){
-          //   newData = {...data, id: response.name};
-          // }
-          // else {
-          //   newData = {...data };
-          // }
-          // console.log('newData === ', newData)
+          console.log(response)
           this.dialogRef.close(true);
         },
         error => {
@@ -102,5 +79,25 @@ export class ModalComponent implements OnInit {
       );
   }
 
+  getErrorMessage(errorField) {
 
+    switch (errorField) {
+      case 'enrollmentId' : {
+        return this.studentData.get('enrollmentId').hasError('required') ? 'You must enter a value' : '';
+        }
+      case 'name': {
+        return this.studentData.get('name').hasError('required') ? 'You must enter a value' : '';
+        }
+        case 'age' : {
+          return this.studentData.get('age').hasError('required') ? 'You must enter a value' : '';
+          }
+        case 'sex': {
+          return this.studentData.get('sex').hasError('required') ? 'You must enter a value' : '';
+          }
+        case 'percentage': {
+          return this.studentData.get('percentage').hasError('required') ? 'You must enter a value' : '';
+        }
+      default: '';
+    }
+  }
 }

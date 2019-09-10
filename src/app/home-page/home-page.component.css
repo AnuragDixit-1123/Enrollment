@@ -4,19 +4,15 @@ table {
 
 .mat-form-field {
   font-size: 14px;
-  /* width: 100%; */
 }
 
 td, th {
-  width: 19%;
+  width: 18.5%;
 }
-
 
 .mainClass {
   box-shadow: 1px 1px 100px 10px rgba(0, 0, 0, 0.5);
-
 }
-
 
 .cardHeader {
   display: flex;
@@ -30,11 +26,13 @@ td, th {
   overflow: auto;
 }
 
-
-
 .container-fluid {
-  /* background-color: red; */
   align-items: flex-end;
   width: 90%;
   padding-top: 5%;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
 }

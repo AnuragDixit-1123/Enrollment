@@ -1,113 +1,59 @@
-
-
 <div *ngIf='isLoading'>
-    <app-loader></app-loader>
-
+  <app-loader></app-loader>
 </div>
 
 <div class="alert alert-danger" *ngIf='!isLoading && error'>
-    <p>{{ error }}</p>
- </div>
-
- <div class="container-fluid">
-    <div class='mainClass'>
-        <div class="card">
-            <div class="card-header">
-              <div class='cardHeader'> <h5>Sign Up</h5>
-                <button mat-raised-button color="primary" >
-                    Sign In
-                  </button>
-                
-                </div>
-             
-            </div>
-
-            <div class="card-body">
-                
-                <form class="example-container" [formGroup]='signUpForm' (ngSubmit)='onClick()' >
-                    <mat-form-field>
-                      <input matInput placeholder="First Name" formControlName="firstName" >
-                      <mat-error *ngIf="signUpForm.get('firstName').invalid">{{getErrorMessage('firstName')}}</mat-error>
-                  
-                    </mat-form-field>
-                    <mat-form-field>
-                      <input matInput placeholder="Last Name" formControlName="lastName" >
-                      <mat-error *ngIf="signUpForm.get('lastName').invalid">{{getErrorMessage('lastName')}}</mat-error>
-                  
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Enter your email" formControlName="email" >
-                        <mat-error *ngIf="signUpForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
-                  
-                    </mat-form-field>
-                    <mat-form-field>
-                      <input matInput placeholder="password" type='password'formControlName="password" >
-                      <mat-error *ngIf="signUpForm.get('password').invalid">{{getErrorMessage('password')}}</mat-error>
-                  
-                    </mat-form-field> 
-                    <mat-form-field>
-                      <input matInput placeholder="Confirm Password" type='password'formControlName="confirmPassword" >
-                      <mat-error *ngIf="signUpForm.get('confirmPassword').invalid">{{getErrorMessage('confirmPassword')}}</mat-error>
-                  
-                      <!-- <mat-error *ngIf="signUpForm.get('confirmPassword').errors || signUpForm.get(password).errors?.mismatch"> Password doesn't match</mat-error> -->
-                  
-                    </mat-form-field>
-                    <button class='signUpButton' mat-raised-button color="primary" [disabled]="!signUpForm.valid">
-                      Signup
-                    </button>
-                  </form>
-            </div>
-
-          </div>
-   
-    </div>         
+  <p>{{ error }}</p>
 </div>
 
-
-<!-- 
-
-<div>
-
-  <div class="alert alert-danger" *ngIf='!isLoading && error'>
-     <p>{{ error }}</p>
-  </div>
-  
-  <div *ngIf='isLoading'>
-      <app-loader></app-loader>
-
-  </div>
-  <div>
-<form class="example-container" [formGroup]='signUpForm' (ngSubmit)='onClick()' *ngIf='!isLoading'>
-  <mat-form-field>
-    <input matInput placeholder="First Name" formControlName="firstName" >
-    <mat-error *ngIf="signUpForm.get('firstName').invalid">{{getErrorMessage('firstName')}}</mat-error>
-
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Last Name" formControlName="firstName" >
-    <mat-error *ngIf="signUpForm.get('firstName').invalid">{{getErrorMessage('lastName')}}</mat-error>
-
-  </mat-form-field>
-  <mat-form-field>
-      <input matInput placeholder="Enter your email" formControlName="email" >
-      <mat-error *ngIf="signUpForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
-
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="password" type='password'formControlName="password" >
-    <mat-error *ngIf="signUpForm.get('password').invalid">{{getErrorMessage('password')}}</mat-error>
-
-  </mat-form-field> 
-  <mat-form-field>
-    <input matInput placeholder="Confirm Password" type='password'formControlName="confirmPassword" >
-    <mat-error *ngIf="signUpForm.get('confirmPassword').invalid">{{getErrorMessage('confirmPassword')}}</mat-error> -->
-
-    <!-- <mat-error *ngIf="signUpForm.get('confirmPassword').errors || signUpForm.get(password).errors?.mismatch"> Password doesn't match</mat-error> -->
-<!-- 
-  </mat-form-field>
-  <button mat-raised-button color="primary" [disabled]="!signUpForm.valid">
-    Signup
-  </button>
-</form>
+<div class="container-fluid">
+  <div class='mainClass'>
+    <div class="card">
+      <div class="card-header">
+        <div class='cardHeader'> 
+          <h5>{{CONSTANTS.HEADINGS.LOGIN}}</h5>
+          <button mat-raised-button color="primary" (click)='onSignInPressed()'>
+            {{CONSTANTS.BUTTONS.SIGN_IN}}
+          </button>
+        </div>  
+      </div>
+      <div class="card-body">
+        <form class="example-container" [formGroup]='signUpForm' (ngSubmit)='onClick()' >
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.FIRST_NAME" formControlName="firstName" >
+            <mat-error *ngIf="signUpForm.get('firstName').invalid">
+              {{getErrorMessage('firstName')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.LAST_NAME" formControlName="lastName" >
+            <mat-error *ngIf="signUpForm.get('lastName').invalid">
+              {{getErrorMessage('lastName')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.EMAIL" formControlName="email" >
+            <mat-error *ngIf="signUpForm.get('email').invalid">
+              {{getErrorMessage('email')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.PASSWORD" type='password'formControlName="password" >
+            <mat-error *ngIf="signUpForm.get('password').invalid">
+              {{getErrorMessage('password')}}
+            </mat-error>
+          </mat-form-field> 
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.CONFIRM_PASSWORD" type='password'formControlName="confirmPassword" >
+            <mat-error *ngIf="signUpForm.get('confirmPassword').invalid">
+              {{getErrorMessage('confirmPassword')}}
+            </mat-error>
+          </mat-form-field>
+          <button class='signUpButton' mat-raised-button color="primary" [disabled]="!signUpForm.valid">
+            {{CONSTANTS.BUTTONS.SIGN_UP}}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>         
 </div>
-</div> -->

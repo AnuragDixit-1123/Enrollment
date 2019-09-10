@@ -1,32 +1,22 @@
-
-
-
 <div *ngIf='isLoading'>
-    <app-loader></app-loader>
-
+  <app-loader></app-loader>
 </div>
 
- <div class="container-fluid">
-    <div class='mainClass'>
-
-        <div class="card">
-
-            <div class="card-header">
-                <div class='cardHeader'> 
-                  <div></div>
-                 <h5 i18n='Title | Heading for the Table@@Tabletitle'>Table Data</h5>
-                  <mat-form-field>
-                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-                    </mat-form-field>
-                  </div>
-               
-              </div>
- 
-    <div class="card-body">
-      <div class="example-container mat-elevation-z8">
-
-        <table mat-table [dataSource]="dataSource" matSort >
-      
+<div class="container-fluid">
+  <div class='mainClass'>
+    <div class="card">
+      <div class="card-header">
+        <div class='cardHeader'> 
+          <div></div>
+          <h5 i18n='Title | Heading for the Table@@Tabletitle'>Table Data</h5>
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+          </mat-form-field>
+        </div>      
+      </div>
+      <div class="card-body">
+        <div class="example-container mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort >
             <ng-container matColumnDef="enrollmentId">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
               <td mat-cell *matCellDef="let element"> {{element.enrollmentId}} </td>
@@ -49,111 +39,36 @@
         
             <ng-container matColumnDef="percentage" >
               <th mat-header-cell *matHeaderCellDef mat-sort-header> percentage </th>
-              <td mat-cell *matCellDef="let element"> {{element.percentage}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.percentage}}% </td>
             </ng-container>
-        
+      
             <ng-container matColumnDef="edit">
               <th mat-header-cell *matHeaderCellDef >  </th>
               <td mat-cell *matCellDef="let element">
                 <button mat-raised-button color="primary" (click)='openModel(element)'>EDIT</button>
               </td>
             </ng-container>
-        
+      
             <ng-container matColumnDef="delete">
               <th mat-header-cell *matHeaderCellDef ></th>
               <td mat-cell *matCellDef="let element">
-                  <button mat-raised-button color="warn" (click)='onDelete(element)'>DELETE</button>
+                <button mat-raised-button color="warn" (click)='onDelete(element)'>DELETE</button>
               </td>    
             </ng-container>
-              
+            
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-      </div>
-          <mat-paginator
-          [length]="length"
-         [pageSize]="pageSize"
-         hidePageSize 
-         ></mat-paginator>
         </div>
+        <mat-paginator
+          [length]="length"
+          [pageSize]="pageSize"
+          hidePageSize >
+        </mat-paginator>
       </div>
-
-      </div>         
+      <div class="card-footer">  
+        <button mat-raised-button color="warn" (click)='openModel(element)'>ADD NEW</button>
+      </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-
-
-<div class="mat-elevation-z8">
-
-  <button mat-raised-button color="warn" (click)='openModel(element)'>ADD</button>
-
-  
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
-  
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-      
-    <ng-container matColumnDef="enrollmentId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.enrollmentId}} </td>
-    </ng-container>
-      
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="age">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
-      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="sex">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sex </th>
-      <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="percentage" >
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> percentage </th>
-      <td mat-cell *matCellDef="let element"> {{element.percentage}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef >  </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button color="primary" (click)='openModel(element)'>EDIT</button>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef ></th>
-      <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="warn" (click)='onDelete(element)'>DELETE</button>
-      </td>    
-    </ng-container>
-      
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-      
-  <mat-paginator
-   [length]="length"
-  [pageSize]="pageSize"
-  hidePageSize 
-  ></mat-paginator>
-</div> -->
+  </div>         
+</div>

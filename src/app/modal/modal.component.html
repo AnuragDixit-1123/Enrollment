@@ -1,34 +1,58 @@
+<div class="card">
+    <div class="card-header">
+       
+          <h5>Student Data</h5>
+         
+      </div>
 
-<form class="example-container" [formGroup]='newGroup' (ngSubmit)='onClick()'>
+      <div class="card-body">
+
+<form class="example-container" [formGroup]='studentData'>
   <mat-form-field>
     <input matInput placeholder='ID' formControlName="enrollmentId" [value]='data.enrollmentId' type='number'>
-    <mat-error *ngIf="newGroup.get('enrollmentId').invalid">Required</mat-error>
-
+    <mat-error *ngIf="studentData.get('enrollmentId').invalid">
+      {{getErrorMessage('enrollmentId')}}
+    </mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
     <input matInput placeholder='Name' formControlName="name" [value]='data.name'>
+    <mat-error *ngIf="studentData.get('name').invalid"> 
+      {{getErrorMessage('name')}}
+    </mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
     <input matInput placeholder='Age' formControlName="age" [value]='data.age' type='number'>
+    <mat-error *ngIf="studentData.get('age').invalid"> 
+      {{getErrorMessage('age')}}
+    </mat-error>
   </mat-form-field>
   <br>
-  <!-- <mat-form-field> -->
-    <!-- <input matInput placeholder='Sex' formControlName="sex" [value]='data.sex'> -->
-    <mat-radio-group aria-label="Select an option" formControlName="sex" >
-
-        <mat-radio-button color='primary' [value]='item' *ngFor="let item of list">{{item}}</mat-radio-button>
-      </mat-radio-group>
-  <!-- </mat-form-field> -->
+  <mat-radio-group aria-label="Select an option" formControlName="sex" >
+    <mat-radio-button color='primary' [value]='item' *ngFor="let item of list">{{item}}</mat-radio-button>
+    <mat-error *ngIf="studentData.get('sex').invalid"> 
+      {{getErrorMessage('sex')}}
+    </mat-error>
+  </mat-radio-group>
   <br>
   <mat-form-field>
     <input matInput placeholder='Percentage' formControlName="percentage" [value]='data.percentage' type='number'>
+    <mat-error *ngIf="studentData.get('percentage').invalid"> 
+      {{getErrorMessage('percentage')}}
+    </mat-error>
   </mat-form-field>
   <br>
-  <div class='buttons'>
-    <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
-    <button mat-raised-button color="warn" type='submit' *ngIf='!data.id' >Add</button>
-    <button mat-raised-button color="warn" type='submit' *ngIf='data.id' >Update</button>
-  </div>
-</form>      
+ 
+</form>    
+</div>
+<div class="card-footer">
+    <div class='buttons'>
+        <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="warn" (click)='onClick()' *ngIf='!data.id' [disabled]="!studentData.valid" class='modalButton'>Add</button>
+        <button mat-raised-button color="warn" (click)='onClick()' *ngIf='data.id' [disabled]="!studentData.valid" class='modalButton'>Update</button>
+      </div>
+</div>
+
+</div>
+

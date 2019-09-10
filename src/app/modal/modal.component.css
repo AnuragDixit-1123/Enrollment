@@ -1,20 +1,27 @@
 .mainClass {
     display: flex;
     flex-direction: column;
-
     align-self: center;
 }
 
 mat-form-field {
-    display: block;
+  display: block;
 }
 
 .buttons {
-
-    flex-direction: row;
-    justify-content: center
+  display: flex;
+  justify-content: center;
 }
 
 .mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
-  }
+  margin-left: 16px;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.modalButton {
+  margin-left: 15px;
+}
+

@@ -22,7 +22,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     SignupComponent,
     HomePageComponent,
     LoaderComponent,
-    ModalComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

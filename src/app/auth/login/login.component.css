@@ -1,60 +1,13 @@
 
-/* 
- .section {
-    display: flex;
-    justify-content: center; */
-    /* align-items: center; */
-    /* height: 100vh; */
-    /* background: #8e2de2; */
-     /* fallback for old browsers */
-    /* background: -webkit-linear-gradient(to right, #4a00e0, #8e2de2);  */
-    /* Chrome 10-25, Safari 5.1-6 */
-    /* background: linear-gradient(to right, #4a00e0, #8e2de2); */
-  /* } */
-  
-  /* .article {
-    text-align: center; */
-    /* color: white; */
-    /* border: 1px solid white; */
-    /* padding: 40px; */
-    /* margin-top: 200px;
-    height: 280px;
-    width: 350px;
-    box-shadow: 1px 1px 100px 10px rgba(0, 0, 0, 0.5);
-  }
-
-  .form-group{
-    padding: 40px
-  }
-  .example-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .example-container > * {
-    width: 100%;
-  }
-
-  button{
-    margin-top: 20px;
-  }
-
-  mat-form-field {
-    width: 150px;
-  } */
-
   .mainClass {
     box-shadow: 1px 1px 100px 10px rgba(0, 0, 0, 0.5);
-
   }
 
   .example-container > * {
     width: 100%;
   }
 
-
   .container-fluid {
-    /* background-color: red; */
     align-items: flex-end;
     width: 30%;
     padding-top: 5%;
@@ -64,7 +17,6 @@
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
-    /* padding-bottom: 20px; */
   }
 
   mat-form-field {
@@ -72,10 +24,5 @@
   }
 
   .loginButton {
-    /* margin-top: 30px; */
     height: 60px;
-  }
-
-  .card {
-    /* background-color: aquamarine; */
   }

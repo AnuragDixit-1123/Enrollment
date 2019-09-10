@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { getLocaleExtraDayPeriodRules } from '@angular/common';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
@@ -14,7 +13,6 @@ interface AuthResponseData {
     localId: string;
     expiresIn: string;
     regitered?: boolean;
-
 }
 
 @Injectable({ providedIn: 'root' })
@@ -26,28 +24,26 @@ tokenTimer: any = null;
 
 constructor( private http: HttpClient, private router: Router) {}
 
-  signUp(email: string, password: string) {
-     return this.http
-        .post<AuthResponseData>(
-             'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBXM1W0_nQLUaZ9i1F6ksO_-Y1N5PA6-NE',
-              {
-                email,
-                password,
-                returnSecureToken: true
-              }
-             )
-             .pipe(
-              catchError(this.handleError),
-                tap(resData => {
-                this.handleAuthentication(
-                  resData.email,
-                  resData.localId,
-                  resData.idToken,
-                  +resData.expiresIn
-                );
-              })
-            );
-
+signUp(email: string, password: string) {
+    return this.http
+      .post<AuthResponseData>(
+            'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBXM1W0_nQLUaZ9i1F6ksO_-Y1N5PA6-NE',
+            {
+              email,
+              password,
+              returnSecureToken: true
+            })
+            .pipe(
+            catchError(this.handleError),
+              tap(resData => {
+              this.handleAuthentication(
+                resData.email,
+                resData.localId,
+                resData.idToken,
+                +resData.expiresIn
+              );
+            })
+          );
     }
 
     login(email: string, password: string) {
@@ -58,8 +54,7 @@ constructor( private http: HttpClient, private router: Router) {}
                  email,
                  password,
                  returnSecureToken: true
-               }
-              )
+               })
               .pipe(
                catchError(this.handleError),
                tap(resData => {
@@ -71,7 +66,6 @@ constructor( private http: HttpClient, private router: Router) {}
                  );
                })
              );
-
      }
 
      autoLogin() {
@@ -89,7 +83,7 @@ constructor( private http: HttpClient, private router: Router) {}
        if ( loaderUser.token ) {
            this.user.next(loaderUser);
            const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
-           this.autoLogout(expirationDuration)
+           this.autoLogout(expirationDuration);
         }
       }
 
@@ -118,7 +112,7 @@ constructor( private http: HttpClient, private router: Router) {}
       const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
       const user = new User(email, userId, token, expirationDate);
       this.user.next(user);
-      this.autoLogout(expiresIn * 1000)
+      this.autoLogout(expiresIn * 1000);
       localStorage.setItem('userData', JSON.stringify(user) );
     }
 
@@ -140,6 +134,4 @@ constructor( private http: HttpClient, private router: Router) {}
       }
       return throwError(errorMessage);
     }
-
-
 }
