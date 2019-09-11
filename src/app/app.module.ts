@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { HeaderComponent } from './shared/header/header.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     SignupComponent,
     HomePageComponent,
     LoaderComponent,
-    ModalComponent
+    ModalComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

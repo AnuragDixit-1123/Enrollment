@@ -37,7 +37,7 @@ export class HomePageComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private homeService: HomePageService, public dialog: MatDialog, private authService: AuthService) {}
+  constructor(private homeService: HomePageService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.fetchData();
@@ -77,7 +77,7 @@ export class HomePageComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '50vw',
-      height: '50vh',
+      height: '76vh',
       data: studentData
     });
 
@@ -111,11 +111,6 @@ export class HomePageComponent implements OnInit {
 
   updateDataSource() {
     this.dataSource = new MatTableDataSource<PeriodicElement>(this.studentData);
-  }
-
-  logout() {
-    this.authService.logout()
-
   }
 
   applyFilter(filterValue: string) {

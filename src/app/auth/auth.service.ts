@@ -5,6 +5,7 @@ import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 import { Router } from '@angular/router';
 import { ERROR_MESSAGES } from '../shared/constant';
+import { environment } from '../../environments/environment';
 
 interface AuthResponseData {
     kind: string;
@@ -28,7 +29,7 @@ constructor( private http: HttpClient, private router: Router) {}
 signUp(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-            'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBXM1W0_nQLUaZ9i1F6ksO_-Y1N5PA6-NE',
+            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseApiKey}`,
             {
               email,
               password,
@@ -50,7 +51,7 @@ signUp(email: string, password: string) {
     login(email: string, password: string) {
       return this.http
          .post<AuthResponseData>(
-              'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBXM1W0_nQLUaZ9i1F6ksO_-Y1N5PA6-NE',
+              `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseApiKey}`,
                {
                  email,
                  password,

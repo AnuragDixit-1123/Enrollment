@@ -63,6 +63,7 @@
             "fr":{
               "aot": true,
               "outputPath": "dist/under-c-fr/",
+              "baseHref": "/fr/",
               "i18nFile": "locale/messages.fr.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "fr"
@@ -72,6 +73,7 @@
 
               "aot": true,
               "outputPath": "dist/under-c-de/",
+              "baseHref": "/de/",
               "i18nFile": "locale/messages.de.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "de"
