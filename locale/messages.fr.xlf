@@ -2,63 +2,167 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="headingLogin" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{CONSTANTS.HEADINGS.LOGIN}}"/></source>
+        <target>Se connecter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/login/login.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buttonSignup" datatype="html">
+        <source>
+              <x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.SIGN_UP}}"/>
+        </source>
+        <target>registrieren</target>
+      <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/login/login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buttonLogin" datatype="html">
+        <source>
+            <x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.LOGIN}}"/>
+          </source>
+        <target>S'identifier</target>
+  <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/login/login.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buttonSignIn" datatype="html">
+        <source>
+            <x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.SIGN_IN}}"/>
+          </source>
+               <target>Se connecter</target>
+ <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buttonSignUp" datatype="html">
+        <source>
+            <x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.SIGN_UP}}"/>
+          </source>
+              <target>registrieren</target>
+  <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="studentFormHeading" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ CONSTANTS.HEADINGS.STUDENT_DATA }}"/></source>
+              <target>Données de l'élève</target>
+  <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modal/modal.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buttonCancel" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.CANCEL}}"/></source>
+               <target>Annuler</target>
+ <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modal/modal.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buttonAdd" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.ADD}}"/></source>
+              <target>Ajouter</target>
+  <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modal/modal.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buttonUpdate" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.UPDATE}}"/></source>
+              <target>Mettre à jour</target>
+  <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modal/modal.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="Tabletitle" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ CONSTANTS.HEADINGS.HOME_PAGE }}"/></source>
-            <target>Cette page est en construction</target>
-        <context-group purpose="location">
+             <target>Données de table</target>
+   <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">11</context>
         </context-group>
         <note priority="1" from="description"> Heading for the Table</note>
         <note priority="1" from="meaning">Title </note>
       </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+            <target>chercher</target>
+    <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">Search placeholder</note>
+      </trans-unit>
       <trans-unit id="columnId" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{CONSTANTS.HOME_PAGE.COLUMN.ID}}"/> </source>
-        <context-group purpose="location">
+             <target>ID</target>
+   <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="columnName" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{CONSTANTS.HOME_PAGE.COLUMN.NAME}}"/> </source>
-        <context-group purpose="location">
+             <target>prénom</target>
+   <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="columnAge" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{CONSTANTS.HOME_PAGE.COLUMN.AGE}}"/></source>
-        <context-group purpose="location">
+           <target>Âge</target>
+     <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="columnGender" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{CONSTANTS.HOME_PAGE.COLUMN.GENDER}}"/></source>
-        <context-group purpose="location">
+             <target>Le sexe</target>
+   <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="columnPercentage" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{CONSTANTS.HOME_PAGE.COLUMN.PERCENTAGE}}"/></source>
-        <context-group purpose="location">
+             <target>Pourcentage</target>
+   <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ButtonEdit" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.EDIT}}"/></source>
-        <context-group purpose="location">
+               <target>MODIFIER</target>
+ <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ButtonDelete" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{CONSTANTS.BUTTONS.DELETE}}"/></source>
-        <context-group purpose="location">
+              <target>EFFACER</target>
+  <context-group purpose="location">
           <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
           <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ButtonAddNew" datatype="html">
+        <source>ADD NEW</source>
+              <target>AJOUTER NOUVEAU</target>
+  <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
     </body>

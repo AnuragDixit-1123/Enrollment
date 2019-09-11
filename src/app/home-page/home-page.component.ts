@@ -61,7 +61,7 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  openModel(data) {
+  openModel(data?) {
     let studentData = data;
 
     if (!data) {

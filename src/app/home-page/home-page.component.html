@@ -10,7 +10,7 @@
           <div></div>
           <h5 i18n='Title | Heading for the Table@@Tabletitle'>{{ CONSTANTS.HEADINGS.HOME_PAGE }}</h5>
           <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            <input matInput (keyup)="applyFilter($event.target.value)" i18n-placeholder="Search placeholder" placeholder="Search">
           </mat-form-field>
           <!-- <button mat-raised-button color="warn" (click)='logout()'>LOGOUT</button> -->
         </div>      
@@ -68,7 +68,7 @@
         </mat-paginator>
       </div>
       <div class="card-footer">  
-        <button mat-raised-button color="warn" (click)='openModel(element)' i18n='@@ButtonAddNew'>ADD NEW</button>
+        <button mat-raised-button color="warn" (click)='openModel()' i18n='@@ButtonAddNew'>ADD NEW</button>
       </div>
     </div>
   </div>         
