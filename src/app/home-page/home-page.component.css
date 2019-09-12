@@ -14,25 +14,24 @@ td, th {
   box-shadow: 1px 1px 100px 10px rgba(0, 0, 0, 0.5);
 }
 
-.cardHeader {
+.header {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 .example-container {
-  height: 400px;
+  height: 500px;
   overflow: auto;
 }
 
 .container-fluid {
   align-items: flex-end;
   width: 90%;
-  padding-top: 5%;
+  padding-top: 2%;
 }
 
-.card-footer {
+mat-card-actions {
   display: flex;
   justify-content: flex-end;
+  margin-right: 5px;
 }

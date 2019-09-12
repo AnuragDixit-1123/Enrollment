@@ -19,6 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
+            "baseHref": "/en/",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -67,7 +68,6 @@
               "i18nFile": "locale/messages.fr.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "fr"
-
             },
             "de":{
 

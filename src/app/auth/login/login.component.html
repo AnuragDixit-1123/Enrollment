@@ -7,34 +7,38 @@
 </div>
 <div class="container-fluid">
   <div class='mainClass'>
-    <div class="card">
-      <div class="card-header">
-        <div class='cardHeader'> 
-          <h5 i18n='@@headingLogin'>{{CONSTANTS.HEADINGS.LOGIN}}</h5>
-          <button mat-raised-button color="primary" (click)='onSignupPressed()' i18n='@@buttonSignup'>
-              {{CONSTANTS.BUTTONS.SIGN_UP}}
-          </button>
-        </div>
-      </div>
-      <div class="card-body">
-        <form class="example-container" [formGroup]='loginForm' (ngSubmit)='onClick()'>
-          <mat-form-field >
-            <input matInput i18n-placeholder="Email Login" [placeholder]="CONSTANTS.LOGIN.PLACEHOLDER.EMAIL"  formControlName="email" >
-            <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <input matInput [placeholder]="CONSTANTS.LOGIN.PLACEHOLDER.PASSWORD" i18n-placeholder="Password Login" type='password' formControlName="password" >
-            <mat-error *ngIf="loginForm.get('password').invalid">
-                {{getErrorMessage('password')}}
-            </mat-error>
-          </mat-form-field>
-          <br>
-          <button class='loginButton' mat-raised-button color="primary" [disabled]="!loginForm.valid" i18n='@@buttonLogin'>
-            {{CONSTANTS.BUTTONS.LOGIN}}
-          </button> 
-        </form>
-      </div>
-    </div>     
+       
+      <mat-card>
+        <div class = 'header'>
+          <mat-card-title>
+              <h5 i18n='@@headingLogin'>{{CONSTANTS.HEADINGS.LOGIN}}</h5>
+             
+            </mat-card-title>
+            <button mat-raised-button color="primary" (click)='onSignupPressed()' i18n='@@buttonSignup'>
+                {{CONSTANTS.BUTTONS.SIGN_UP}}
+            </button>
+            </div>
+          <mat-card-content>
+              <form class="example-container" [formGroup]='loginForm' (ngSubmit)='onClick()'>
+                  <mat-form-field >
+                    <input matInput i18n-placeholder="Email Login" [placeholder]="CONSTANTS.LOGIN.PLACEHOLDER.EMAIL"  formControlName="email" >
+                    <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage('email')}}</mat-error>
+                  </mat-form-field>
+                  <br>
+                  <mat-form-field>
+                    <input matInput [placeholder]="CONSTANTS.LOGIN.PLACEHOLDER.PASSWORD" i18n-placeholder="Password Login" type='password' formControlName="password" >
+                    <mat-error *ngIf="loginForm.get('password').invalid">
+                        {{getErrorMessage('password')}}
+                    </mat-error>
+                  </mat-form-field>
+                  <br>
+                  <button class='loginButton' mat-raised-button color="primary" [disabled]="!loginForm.valid" i18n='@@buttonLogin'>
+                    {{CONSTANTS.BUTTONS.LOGIN}}
+                  </button> 
+                </form>
+
+            </mat-card-content>
+      </mat-card>
+
   </div>         
 </div>

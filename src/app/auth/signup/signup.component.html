@@ -8,6 +8,69 @@
 
 <div class="container-fluid">
   <div class='mainClass'>
+    <mat-card >
+      <div class = 'header'>
+        <mat-card-title>
+          <h5 i18n='@@buttonLogin'>{{CONSTANTS.HEADINGS.LOGIN}}</h5>  
+        </mat-card-title>
+        <button mat-raised-button color="primary" (click)='onSignInPressed()' i18n='@@buttonSignIn'>
+          {{CONSTANTS.BUTTONS.SIGN_IN}}
+        </button>
+      </div>
+      <mat-card-content>
+        <form class="example-container" [formGroup]='signUpForm' (ngSubmit)='onClick()' >
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.FIRST_NAME" i18n-placeholder="First_Name Signup" formControlName="firstName" >
+            <mat-error *ngIf="signUpForm.get('firstName').invalid">
+              {{getErrorMessage('firstName')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.LAST_NAME" i18n-placeholder="Last_Name Signup" formControlName="lastName" >
+            <mat-error *ngIf="signUpForm.get('lastName').invalid">
+              {{getErrorMessage('lastName')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.EMAIL" i18n-placeholder="Email Signup" formControlName="email" >
+            <mat-error *ngIf="signUpForm.get('email').invalid">
+              {{getErrorMessage('email')}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.PASSWORD" i18n-placeholder="Password Signup" type='password'formControlName="password" >
+            <mat-error *ngIf="signUpForm.get('password').invalid">
+              {{getErrorMessage('password')}}
+            </mat-error>
+          </mat-form-field> 
+          <mat-form-field>
+            <input matInput [placeholder]="CONSTANTS.SIGN_UP.PLACEHOLDER.CONFIRM_PASSWORD" i18n-placeholder="Confirm_Password Signup" type='password'formControlName="confirmPassword" >
+            <mat-error *ngIf="signUpForm.get('confirmPassword').invalid">
+              {{getErrorMessage('confirmPassword')}}
+            </mat-error>
+          </mat-form-field>
+          <button class='signUpButton' mat-raised-button color="primary" [disabled]="!signUpForm.valid" i18n='@@buttonSignUp'>
+            {{CONSTANTS.BUTTONS.SIGN_UP}}
+          </button>
+        </form>              
+      </mat-card-content>
+    </mat-card>
+  </div>         
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
     <div class="card">
       <div class="card-header">
         <div class='cardHeader'> 
@@ -55,5 +118,4 @@
         </form>
       </div>
     </div>
-  </div>         
-</div>
+ -->

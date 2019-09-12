@@ -31,6 +31,7 @@ export class SignupComponent implements OnInit{
       .subscribe(
         response => {
           this.isLoading = false;
+          this.router.navigate(['/login']);
         },
         error => {
           this.error = error;

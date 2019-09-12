@@ -1,74 +1,75 @@
 <div *ngIf='isLoading'>
-  <app-loader></app-loader>
-</div>
-
-<div class="container-fluid">
-  <div class='mainClass'>
-    <div class="card">
-      <div class="card-header">
-        <div class='cardHeader'> 
-          <div></div>
-          <h5 i18n='Title | Heading for the Table@@Tabletitle'>{{ CONSTANTS.HEADINGS.HOME_PAGE }}</h5>
+    <app-loader></app-loader>
+  </div>
+  <div class="container-fluid">
+    <div class='mainClass'>
+      <mat-card>
+        <div class='header'>
+          <mat-card-title>
+            <h5 i18n='Title | Heading for the Table@@Tabletitle'>{{ CONSTANTS.HEADINGS.HOME_PAGE }}</h5>
+          </mat-card-title>
           <mat-form-field>
             <input matInput (keyup)="applyFilter($event.target.value)" i18n-placeholder="Search placeholder" placeholder="Search">
           </mat-form-field>
-        </div>      
-      </div>
-      <div class="card-body">
-        <div class="example-container mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" matSort >
-            <ng-container matColumnDef="enrollmentId">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnId'> {{CONSTANTS.HOME_PAGE.COLUMN.ID}} </th>
-              <td mat-cell *matCellDef="let element"> {{element.enrollmentId}} </td>
-            </ng-container>
-              
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnName'> {{CONSTANTS.HOME_PAGE.COLUMN.NAME}} </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="age">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnAge'> {{CONSTANTS.HOME_PAGE.COLUMN.AGE}}</th>
-              <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="sex">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnGender'> {{CONSTANTS.HOME_PAGE.COLUMN.GENDER}}</th>
-              <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="percentage" >
-              <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnPercentage'>{{CONSTANTS.HOME_PAGE.COLUMN.PERCENTAGE}}</th>
-              <td mat-cell *matCellDef="let element"> {{element.percentage}}% </td>
-            </ng-container>
-      
-            <ng-container matColumnDef="edit">
-              <th mat-header-cell *matHeaderCellDef >  </th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" (click)='openModel(element)' i18n='@@ButtonEdit'>{{CONSTANTS.BUTTONS.EDIT}}</button>
-              </td>
-            </ng-container>
-      
-            <ng-container matColumnDef="delete">
-              <th mat-header-cell *matHeaderCellDef ></th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="warn" (click)='onDelete(element)' i18n='@@ButtonDelete'>{{CONSTANTS.BUTTONS.DELETE}}</button>
-              </td>    
-            </ng-container>
-            
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
         </div>
-        <mat-paginator
-          [length]="length"
-          [pageSize]="pageSize"
-          hidePageSize >
-        </mat-paginator>
-      </div>
-      <div class="card-footer">  
-        <button mat-raised-button color="warn" (click)='openModel()' i18n='@@ButtonAddNew'>ADD NEW</button>
-      </div>
+        <mat-card-content>
+          <div class="example-container mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort >
+              <ng-container matColumnDef="enrollmentId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnId'> {{CONSTANTS.HOME_PAGE.COLUMN.ID}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.enrollmentId}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnName'> {{CONSTANTS.HOME_PAGE.COLUMN.NAME}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="age">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnAge'> {{CONSTANTS.HOME_PAGE.COLUMN.AGE}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="sex">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnGender'> {{CONSTANTS.HOME_PAGE.COLUMN.GENDER}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="percentage" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header i18n='@@columnPercentage'>{{CONSTANTS.HOME_PAGE.COLUMN.PERCENTAGE}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.percentage}}% </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef >  </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button color="primary" (click)='openModel(element)' i18n='@@ButtonEdit'>{{CONSTANTS.BUTTONS.EDIT}}</button>
+                </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef ></th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button color="warn" (click)='onDelete(element)' i18n='@@ButtonDelete'>{{CONSTANTS.BUTTONS.DELETE}}</button>
+                </td>    
+              </ng-container>
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+          <mat-paginator
+            [length]="length"
+            [pageSize]="pageSize"
+            hidePageSize >
+          </mat-paginator>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn" (click)='openModel()' i18n='@@ButtonAddNew'>ADD NEW</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>         
-</div>
+  
+  
+  

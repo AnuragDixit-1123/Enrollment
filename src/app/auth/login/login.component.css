@@ -13,10 +13,9 @@
     padding-top: 5%;
   }
 
-  .cardHeader {
-    display: flex;
+  .header {
     justify-content: space-between;
-    padding-top: 20px;
+    display: flex;
   }
 
   mat-form-field {
